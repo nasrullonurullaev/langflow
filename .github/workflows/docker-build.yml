@@ -232,8 +232,7 @@ jobs:
           - component: docker-frontend
             dockerfile: ./docker/frontend/build_and_push_frontend.Dockerfile
             tags: nasrullonurullaev5/langflow-frontend:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow-frontend:latest
-            langflow_image: nasrullonurullaev5/langflow:${{ needs.get-version.outputs.version }}
-            
+            langflow_image: nasrullonurullaev5/langflow:${{ needs.get-version.outputs.version }}            
     steps:
       - name: Check out the code at a specific ref
         uses: actions/checkout@v4
