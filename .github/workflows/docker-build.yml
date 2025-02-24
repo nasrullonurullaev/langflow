@@ -153,23 +153,19 @@ jobs:
           if [[ "${{ inputs.release_type }}" == "base" || "${{ inputs.release_type }}" == "nightly-base" ]]; then
             # LANGFLOW-BASE RELEASE
             echo "docker_tags=nasrullonurullaev5/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
-            echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
             echo "file=./docker/build_and_push_base.Dockerfile" >> $GITHUB_OUTPUT
           else
             if [[ "${{ inputs.pre_release }}" == "true" ]]; then
               # LANGFLOW-MAIN PRE-RELEASE
               echo "docker_tags=nasrullonurullaev5/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
-              echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push.Dockerfile" >> $GITHUB_OUTPUT
             elif [[ "${{ inputs.release_type }}" == "main-ep" ]]; then
               # LANGFLOW-MAIN (ENTRYPOINT) RELEASE
               echo "docker_tags=nasrullonurullaev5/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
-              echo "ghcr_tags=ghcr.io/langflow-ai/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push_ep.Dockerfile" >> $GITHUB_OUTPUT
             elif [[ "${{ inputs.release_type }}" == "main" || "${{ inputs.release_type }}" == "nightly-main" ]]; then
               # LANGFLOW-MAIN RELEASE
               echo "docker_tags=nasrullonurullaev5/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
-              echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push.Dockerfile" >> $GITHUB_OUTPUT
             else
               echo "Invalid release type. Exiting the workflow."
