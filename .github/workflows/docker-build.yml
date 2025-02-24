@@ -50,7 +50,7 @@ on:
 
 env:
   POETRY_VERSION: "1.8.2"
-  TEST_TAG: "langflowai/langflow:test"
+  TEST_TAG: "nasrullonurullaev5/langflow:test"
 
 jobs:
   get-version:
@@ -152,23 +152,23 @@ jobs:
 
           if [[ "${{ inputs.release_type }}" == "base" || "${{ inputs.release_type }}" == "nightly-base" ]]; then
             # LANGFLOW-BASE RELEASE
-            echo "docker_tags=langflowai/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},langflowai/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
+            echo "docker_tags=nasrullonurullaev5/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
             echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:base-${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow${nightly_suffix}:base-latest" >> $GITHUB_OUTPUT
             echo "file=./docker/build_and_push_base.Dockerfile" >> $GITHUB_OUTPUT
           else
             if [[ "${{ inputs.pre_release }}" == "true" ]]; then
               # LANGFLOW-MAIN PRE-RELEASE
-              echo "docker_tags=langflowai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
+              echo "docker_tags=nasrullonurullaev5/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
               echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }}" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push.Dockerfile" >> $GITHUB_OUTPUT
             elif [[ "${{ inputs.release_type }}" == "main-ep" ]]; then
               # LANGFLOW-MAIN (ENTRYPOINT) RELEASE
-              echo "docker_tags=langflowai/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},langflowai/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
+              echo "docker_tags=nasrullonurullaev5/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "ghcr_tags=ghcr.io/langflow-ai/langflow-ep${nightly_suffix}:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow-ep${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push_ep.Dockerfile" >> $GITHUB_OUTPUT
             elif [[ "${{ inputs.release_type }}" == "main" || "${{ inputs.release_type }}" == "nightly-main" ]]; then
               # LANGFLOW-MAIN RELEASE
-              echo "docker_tags=langflowai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},langflowai/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
+              echo "docker_tags=nasrullonurullaev5/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "ghcr_tags=ghcr.io/langflow-ai/langflow${nightly_suffix}:${{ needs.get-version.outputs.version }},ghcr.io/langflow-ai/langflow${nightly_suffix}:latest" >> $GITHUB_OUTPUT
               echo "file=./docker/build_and_push.Dockerfile" >> $GITHUB_OUTPUT
             else
@@ -227,12 +227,12 @@ jobs:
         include:
           - component: docker-backend
             dockerfile: ./docker/build_and_push_backend.Dockerfile
-            tags: langflowai/langflow-backend:${{ needs.get-version.outputs.version }},langflowai/langflow-backend:latest
-            langflow_image: langflowai/langflow:${{ needs.get-version.outputs.version }}
+            tags: nasrullonurullaev5/langflow-backend:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow-backend:latest
+            langflow_image: nasrullonurullaev5/langflow:${{ needs.get-version.outputs.version }}
           - component: docker-frontend
             dockerfile: ./docker/frontend/build_and_push_frontend.Dockerfile
-            tags: langflowai/langflow-frontend:${{ needs.get-version.outputs.version }},langflowai/langflow-frontend:latest
-            langflow_image: langflowai/langflow:${{ needs.get-version.outputs.version }}
+            tags: nasrullonurullaev5/langflow-frontend:${{ needs.get-version.outputs.version }},nasrullonurullaev5/langflow-frontend:latest
+            langflow_image: nasrullonurullaev5/langflow:${{ needs.get-version.outputs.version }}
             
     steps:
       - name: Check out the code at a specific ref
