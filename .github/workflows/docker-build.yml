@@ -223,7 +223,7 @@ jobs:
     needs: [build, get-version]
     strategy:
       matrix:
-        component: [docker-backend, docker-frontend, ghcr-backend, ghcr-frontend]
+        component: [docker-backend, docker-frontend]
         include:
           - component: docker-backend
             dockerfile: ./docker/build_and_push_backend.Dockerfile
