@@ -191,6 +191,9 @@ jobs:
             uv sync --no-dev --no-sources
           fi
 
+      - name: Update pyarrow version
+        run: sed -i 's/pyarrow==17\.0\.0/pyarrow==19.0.0/' ./pyproject.toml
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
